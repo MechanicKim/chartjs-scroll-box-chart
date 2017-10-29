@@ -1,0 +1,60 @@
+<!doctype html>
+
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+
+  <title>Chart.js scroll-box-chart</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no">
+  <meta name="description" content="Chart.js scroll-box-chart">
+  <meta name="author" content="Minkyu Jason Kim">
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.bundle.min.js"></script>
+  <script type="text/javascript" src="chart.js"></script>
+</head>
+
+<body>
+  <div>
+    <canvas id="chart"></canvas>
+    <canvas id="chart-view"></canvas>
+  </div>
+
+  <script>
+  function getDummyData() {
+    var labels = [];
+    var data = [];
+    for (var i = 0; i <= 100; i++) {
+      labels.push(i);
+      data.push(Math.round(Math.random() * 10));
+    }
+
+    return { labels: labels, data: data };
+  }
+
+  window.onload = function() {
+    var canvas = document.getElementById("chart");
+    var canvasView = document.getElementById("chart-view");
+    canvas.width = 1024;
+    canvas.height = 100;
+    canvasView.width = 500;
+    canvasView.height = 400;
+
+    var ctx = canvas.getContext("2d");
+    var ctxView = canvasView.getContext("2d");
+
+    var dummyData = getDummyData();
+
+    var chartData = {
+      ctx: canvas.getContext("2d"),
+      ctxView: canvasView.getContext("2d"),
+      labels: dummyData.labels,
+      data: dummyData.data,
+      backgroundColor: 'rgb(255, 99, 132)',
+      boxColor: 'rgb(54, 162, 235)',
+    };
+
+    drawChart(chartData);
+  }
+  </script>
+</body>
+</html>
